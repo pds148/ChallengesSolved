@@ -1,0 +1,7 @@
+SELECT w.id
+FROM weather AS w
+INNER JOIN (
+    SELECT id, temperature, DATE_ADD(recorddate, INTERVAL 1 DAY) AS y
+    FROM weather
+) AS p ON w.recordDate = p.y AND w.temperature > p.temperature
+WHERE w.temperature > p.temperature
